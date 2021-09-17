@@ -64,6 +64,8 @@ def login():
 
 @app.route('/dashboard')
 def render_dashboard():
+    if 'user_id' not in session:
+        return redirect('/logout')
     user = session['user_name']
     user_id = session['user_id']
     return render_template('dashboard.html', user= user, user_id = user_id)
